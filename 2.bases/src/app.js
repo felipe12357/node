@@ -2,7 +2,7 @@ const {emailTemplate} = require('./js-foundation/1.template');
 const {getUserById} = require('./js-foundation/2.callBacks');
 require('./js-foundation/3.factoryV1');
 
-const { getAge,getId } = require('./plugins');
+const { getAge,getId,buildlogger } = require('./plugins');
 const { buildPersonV2 } = require('./js-foundation/3.factoryV2');
 
 const getPokemon = require('./js-foundation/4.promises');
@@ -29,3 +29,7 @@ const getPokemonV2 = require('./js-foundation/5.promisesAdapter');
     //ejemplo con adapter
     getPokemonV2(2).then(name => console.log("pokemon name:",name));
 
+
+    // ejemplo de como utilizar winston logger
+    const logger = buildlogger('app.js');
+    logger.log('hola mundo')

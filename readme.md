@@ -1,4 +1,4 @@
-*** Comandos
+## Comandos
     node => inicia la terminal interactiva de node (similar a la del navegador web)
     node nombreArchivo => ejecuta un archivo javascript
 
@@ -9,7 +9,7 @@
 
             para que el debugger funcione se debe ejecutar el programa desde el archivo package.json, y no mediante el comando
 
-*** Extensiones VS Code
+## Extensiones VS Code
 
     Live Server: servidor web
     ThunderClient : como un postman
@@ -18,7 +18,7 @@
 
     MaterialIcon Theme
 
-*** nvm
+## nvm
 
     Instalacion:
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
@@ -37,5 +37,62 @@
         Nvm use 14… hace q use la version 14
         Nvm ls = lista las version instaladas de node
 
-** Paquetes
+## Paquetes
     npm install --save-dev nodemon
+    nodemon src/app.js => comando para lanzar la aplicacion utilizando nodemon
+
+   ### Typescript con node: (https://gist.github.com/Klerith/47af527da090043f604b972b22dd4c01)
+   Instalar TypeScript y tipos de Node, como dependencia de desarrollo
+   npm i -D typescript
+   
+   Inicializar el archivo de configuración de TypeScript 
+   npx tsc --init --outDir dist/ --rootDir src 
+
+   toca tener 2 archivos ejecutandose, haciendo click en el package.json script:
+    * npx tsc --watch => detecta los cambios hechos en typescript y los compila a typescript //este toca lanzarlos desde el archivo package.json
+    * nodemon dist/app =>esta pendiente de estos cambios en la carpeta de distribución
+
+   para evitar lo anterior se utiliza ts-node
+   npm install -D ts-node
+
+   Ademas se crea el archivo: nodemon.json en la raiz de la aplicación el siguiente contenido:<br>
+    ```
+    {
+        "watch": ["src"],
+        "ext": ".ts, .js",
+        "ignore": [],
+        "exec": "ts-node ./src/app.ts"
+    }
+    ```
+    <br>
+    Ahora para ejecutarlo simplemente lo podemos hacer con nodemon:
+    para ellos corremos del package.json: npm run-dev (ya lo configuré en dicho archivo)
+
+    ### Scripts para production
+    npm install -D rimraf
+
+    "build": "rimfaf ./dist && tsc",   //Elimina la carperta de distribucion y crea una nueva
+    "start": "npm run build && node dist/app.js" //ejecuta el build y luego corre la aplicacion
+    
+## UnitTest
+
+    https://gist.github.com/Klerith/98d7b1bc0f1525e892f260813cad1007
+
+    1. Instalaciones de desarrollo (super test es útil para probar Express):
+    npm install -D jest @types/jest ts-jest supertest
+
+    2. Crear archivo de configuración de Jest:
+    npx jest --init
+
+    3. En el archivo jest.config.js configurar
+    preset: 'ts-jest',
+    testEnvironment: "jest-environment-node",
+
+    // Opcional - The paths to modules that run some code to configure or set up the testing environment before each test
+    // setupFiles: ['dotenv/config'],
+
+
+    4. Crear scripts en el package.json
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
