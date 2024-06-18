@@ -37,14 +37,13 @@
         Nvm use 14… hace q use la version 14
         Nvm ls = lista las version instaladas de node
 
-## Paquetes
-    npm install --save-dev nodemon
-    nodemon src/app.js => comando para lanzar la aplicacion utilizando nodemon
+## Typescript con node (explication): (https://gist.github.com/Klerith/47af527da090043f604b972b22dd4c01)
+    Instalar TypeScript y tipos de Node, como dependencia de desarrollo
+    npm i -D typescript
 
-   ### Typescript con node: (https://gist.github.com/Klerith/47af527da090043f604b972b22dd4c01)
-   Instalar TypeScript y tipos de Node, como dependencia de desarrollo
-   npm i -D typescript
-   
+    npm install --save-dev nodemon
+        nodemon src/app.js => comando para lanzar la aplicacion utilizando nodemon (con tsnode no es necesario)
+
    Inicializar el archivo de configuración de TypeScript 
    npx tsc --init --outDir dist/ --rootDir src 
 
@@ -96,3 +95,29 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
+
+## Iniciación de proyecto resumen:
+    0.Iniciar el archivo package.json
+        npm init 
+
+    1. Instalar TypeScript y demás dependencias
+        npm i -D typescript @types/node ts-node nodemon rimraf
+
+    2.Inicializar el archivo de configuración de TypeScript 
+        npx tsc --init --outDir dist/ --rootDir src
+    
+    3.Crear archivo de configuración Nodemon - nodemon.json
+        {
+            "watch": ["src"],
+            "ext": ".ts,.js",
+            "ignore": [],
+            "exec": "npx ts-node ./src/app.ts"
+        }
+
+    4. Crear scripts para dev, build y start en el package.json:
+        "dev": "nodemon",
+        "build": "rimraf ./dist && tsc",
+        "start": "npm run build && node dist/app.js"
+    
+    nota: para correr scripts en la consola q sean de ts-node se antepone npx:
+    npx ts-node src/app

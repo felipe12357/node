@@ -10,7 +10,7 @@
     "dev-run0": "nodemon dist/app",
     "dev0": "npx tsc --watch",
     "dev": "nodemon",
-    "build": "npm run test && rimfaf ./dist && tsc",
+    "build": "npm run test && rimraf ./dist && tsc",
     "start": "node dist/app.js"
   },
   "author": "Andres Tamayo",
