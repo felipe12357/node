@@ -7,6 +7,7 @@
 /3.typescript/node_modules
 /3.typescript/dist
 /3.typescript/coverage
-4.multiplication/node_modules
-4.multiplication/assets
-
+/4.multiplication/node_modules
+/4.multiplication/assets
+/4.multiplication/dist
+/4.multiplication/coverage

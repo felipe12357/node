@@ -96,6 +96,10 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
 
+    5. En el archivo tsConfig agregar las lineas:(indica q se va a generar en la carpeta dist)
+        "include": ["src/**/*"],
+        "exclude": ["node_modules", "**/*.spec.ts","**/*.test.ts"],
+
 ## Iniciación de proyecto resumen:
     0.Iniciar el archivo package.json
         npm init 
