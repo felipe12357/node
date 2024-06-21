@@ -125,3 +125,36 @@
     
     nota: para correr scripts en la consola q sean de ts-node se antepone npx:
     npx ts-node src/app
+
+## iniciacion de proyecto sin nodemon y con ts-node-dev
+
+    0.Iniciar el archivo package.json
+        npm init 
+
+    1. Instalar TypeScript y demás dependencias
+        npm i -D typescript @types/node ts-node-dev rimraf
+
+    2.Inicializar el archivo de configuración de TypeScript 
+        npx tsc --init --outDir dist/ --rootDir src
+
+    4. Crear scripts para dev, build y start en el package.json:
+        "dev": "tsnd --respawn src/app.ts",
+        "build": "rimraf ./dist && tsc",
+        "start": "npm run build && node dist/app.js"
+
+
+## json-server
+    es util para crear prototipos de aplicaciones rest 
+    npm install json-server
+
+    https://www.npmjs.com/package/json-server
+
+    siemplemente se inicia el archivo package.json
+        npm init 
+
+    se crea un archivo db.json con data inicial
+    
+    y se ejecuta: npx json-server db.json
+
+
+   
