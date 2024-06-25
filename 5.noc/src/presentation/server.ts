@@ -1,6 +1,8 @@
-
 import { CheckService } from "../domain/use-cases/checks/check-service";
+import { FileSystemDataSource } from "../infrastructure/dataSources/file-system.datasource";
+import { LogRepositoryImpl } from "../infrastructure/repositories/log.repository.impl";
 import { CronService } from "./cron/cron-service";
+
 
 export class Server {
     cronService: CronService = new CronService;
@@ -19,8 +21,13 @@ export class Server {
     }
 
     static start(){
+        const logDataSource = new FileSystemDataSource();
+        const fileSystemLogRepository = new LogRepositoryImpl(logDataSource);
+
+
         const ServerInstance = Server.getInstance();
         const checkService = new CheckService(
+            fileSystemLogRepository,
             ()=>console.log('success'),
             (error)=>console.error("error",error)
         );
@@ -28,7 +35,10 @@ export class Server {
 
         const functionTick= ()=>{ checkService.execute('http://google.com')};
         const job = ServerInstance.cronService.createJob('*/3 * * * * *',functionTick);
-        ServerInstance.jobList.push(job);
+
+        const functionTick2= ()=>{ checkService.execute('http://localhost:3000')};
+        const job2 = ServerInstance.cronService.createJob('*/3 * * * * *',functionTick2);
+        ServerInstance.jobList = [job,job2];
     }
 
     static stop(){

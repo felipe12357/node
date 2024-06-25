@@ -9,5 +9,23 @@
     ],
     "profile": {
       "name": "typicode"
-    }
+    },
+    "matchesInfo":[
+      { "team1":"Argentina","team2":"Canada","date":"21/06/2024"},
+      { "team1":"Perú","team2":"Chile","date":"21/06/2024"},
+      { "team1":"Ecuador","team2":"Venezuela","date":"22/06/2024"},
+      { "team1":"México","team2":"Jamaica","date":"22/06/2024"},
+      { "team1":"Estados Unidos","team2":"Bolivia","date":"23/06/2024"},
+      { "team1":"Uruguay","team2":"Panamá","date":"23/06/2024"},
+      { "team1":"Colombia","team2":"Paraguay","date":"24/06/2024"},
+      { "team1":"Brazil","team2":"Costa Rica","date":"24/06/2024"},
+      { "team1":"Perú","team2":"Canada","date":"25/06/2024"},
+      { "team1":"Chile","team2":"Argentina","date":"25/06/2024"},
+      { "team1":"Ecuador","team2":"Jamaica","date":"26/06/2024"},
+      { "team1":"Venezuela","team2":"México","date":"26/06/2024"},
+      { "team1":"Panamá","team2":"Estados Unidos","date":"27/06/2024"},
+      { "team1":"Uruguay","team2":"Bolivia","date":"27/06/2024"},
+      { "team1":"Colombia","team2":"Costa Rica","date":"28/06/2024"},
+      { "team1":"Paraguay","team2":"Brazil","date":"28/06/2024"}
+    ]
   }

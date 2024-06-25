@@ -12,4 +12,5 @@
 /4.multiplication/dist
 /4.multiplication/coverage
 /5.noc/node_modules
+/5.noc/logs
 /6.jsonServer/node_modules
