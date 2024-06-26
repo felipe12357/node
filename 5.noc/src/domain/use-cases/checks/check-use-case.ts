@@ -1,14 +1,14 @@
-import { LogEntity, LogSecurityLevelEnum } from "../../entities/log.entitiy";
+import { LogEntity, LogProperties, LogSecurityLevelEnum } from "../../entities/log.entitiy";
 import { LogRepository } from "../../repository/log.repository";
 
-interface CheckServiceI {
+interface CheckUseCaseI {
     execute(url:string):Promise<Boolean>
 }
 
 type SuccessCallBack =()=>void;
 type ErrorCallBack = (error:string)=>void;
 
-export class CheckService implements CheckServiceI{
+export class CheckUseCase implements CheckUseCaseI{
     //all recibir los metodos en el constructor estoy implementando
     //injection de dependencias
     constructor(
@@ -18,18 +18,27 @@ export class CheckService implements CheckServiceI{
     }
 
     async execute(url:string):Promise<boolean>{
+
+        const logProperties:LogProperties = { 
+            message:`Service ${url} working`, 
+            level:LogSecurityLevelEnum.low,
+            origin: 'check-service'}
+
         try {
             const req = await fetch(url);
             if( !req.ok)
                 throw new Error(`Error checking the url : ${url}`)
 
-            this.logRepository.saveLog(new LogEntity(LogSecurityLevelEnum.low,`Service ${url} working`))
+            this.logRepository.saveLog(new LogEntity(logProperties))
             this.successCallBack();
             return true
         }catch(error){
             //console.log(error);
             const errorString = `${url} is failing, ${error}`;
-            this.logRepository.saveLog(new LogEntity(LogSecurityLevelEnum.hight,errorString))
+            logProperties.level = LogSecurityLevelEnum.hight;
+            logProperties.message =errorString;
+
+            this.logRepository.saveLog(new LogEntity(logProperties))
             this.errorCallBack(errorString);
             return false;
         }

@@ -157,4 +157,6 @@
     y se ejecuta: npx json-server db.json
 
 
-   
+## Para enviar correos se hace atravez de GMAIL (la cuenta debe tener 2 factor de autenticacion) y nodemailer
+   En la parte de seguridad de Google chrome buscar apppasswords
+   https://myaccount.google.com/apppasswords

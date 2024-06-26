@@ -3,10 +3,12 @@ import { envs } from "./config/envs.plugin";
 
 //const server = new Server();
 //server.start();
-Server.start();
+
+
+/* Server.startLogs();
 setTimeout(()=>{
-    Server.stop();
+    Server.stopLogs();
 },10000) 
-console.log("arranca")
-console.log(envs.MAILER_EMAIL);
-console.log(envs);
+
+
+Server.sendEmail(); */

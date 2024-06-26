@@ -7,3 +7,6 @@ export const envs = {
     MAILER_SECRET_KEY: envvalidator.get('MAILER_SECRET_KEY').required().asString(),
     PROD: envvalidator.get('PROD').required().asBool()
 }
+
+//para acceder a estas variables simplemente:
+//console.log(envs);
