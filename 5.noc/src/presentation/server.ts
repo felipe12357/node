@@ -1,16 +1,25 @@
+import { LogSecurityLevelEnum } from "../domain/entities/log.entitiy";
 import { CheckUseCase } from "../domain/use-cases/checks/check-use-case";
 import { MailUseCase } from "../domain/use-cases/mails/mail-use-case";
 import { FileSystemDataSource } from "../infrastructure/dataSources/file-system.datasource";
+import { MongoDataSource } from "../infrastructure/dataSources/mongo.datasource";
 import { LogRepositoryImpl } from "../infrastructure/repositories/log.repository.impl";
 import { CronService } from "./cron/cron-service";
 import { EmailService } from "./email/email.service";
 
 
 export class Server {
+    //Aca podemos alternar entre los diferentes data sources
     logDataSource = new FileSystemDataSource();
-    fileSystemLogRepository = new LogRepositoryImpl(this.logDataSource);
+    logRepository = new LogRepositoryImpl(this.logDataSource);
+
+    mongoDataSource = new MongoDataSource();
+  //  logRepository = new LogRepositoryImpl(this.mongoDataSource);
+
+
     cronService: CronService = new CronService;
     mailService:EmailService = new EmailService();
+    
     
     private static instance: Server;
     jobList:any[] =[]; // pongo any para no generar dependencia del tipo de job
@@ -28,7 +37,7 @@ export class Server {
     static startLogs(){
         const ServerInstance = Server.getInstance();
         const checkUseCase = new CheckUseCase(
-            ServerInstance.fileSystemLogRepository,
+            ServerInstance.logRepository,
             ()=>console.log('success'),
             (error)=>console.error("error",error)
         );
@@ -54,7 +63,7 @@ export class Server {
     static sendEmail(){
         const ServerInstance = Server.getInstance();
 
-        const mailUseCase = new MailUseCase(ServerInstance.mailService,ServerInstance.fileSystemLogRepository);
+        const mailUseCase = new MailUseCase(ServerInstance.mailService,ServerInstance.logRepository);
         mailUseCase.sendEmail({to:"andrewt12357@hotmail.com",subject:"from node",htmlBody:"<p>Test body</p>"});
         mailUseCase.sendEmail({
             to:"andrewt12357@hotmail.com",
@@ -66,5 +75,12 @@ export class Server {
                 { fileName:'logs-medium.log',path:'logs/logs-medium.log'} 
             ]
         })
+    }
+
+    static async getLogs(){
+        const ServerInstance = Server.getInstance();
+        const logs = await ServerInstance.logRepository.getLogs(LogSecurityLevelEnum.hight);
+        console.log(logs);
+        console.log("fin");
     }
 }

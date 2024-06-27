@@ -160,3 +160,16 @@
 ## Para enviar correos se hace atravez de GMAIL (la cuenta debe tener 2 factor de autenticacion) y nodemailer
    En la parte de seguridad de Google chrome buscar apppasswords
    https://myaccount.google.com/apppasswords
+
+## DOcker
+    Debemos instalar docker desktop => este automaticamente instalaca compose
+                     mongoDbCompass => se usa para gestionar las BD
+
+    adicionalmente ejecutamos los comandos:
+    docker pull mongo:6.0.6
+    docker pull postgres:15.3
+
+    luego de tener configurado el archivo: docker-compose.yml ejecutamos:
+
+    docker compose up
+    luego de ejecutarlo por primera vez se puede correr el contenedor desde docker Desktop

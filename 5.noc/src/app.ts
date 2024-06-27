@@ -8,7 +8,11 @@ import { envs } from "./config/envs.plugin";
 /* Server.startLogs();
 setTimeout(()=>{
     Server.stopLogs();
-},10000) 
+},10000); */
 
 
-Server.sendEmail(); */
+//Server.sendEmail();
+(async()=>{
+   await Server.getLogs();
+})()
+

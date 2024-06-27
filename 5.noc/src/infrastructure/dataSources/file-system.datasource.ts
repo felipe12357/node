@@ -39,7 +39,8 @@ export class FileSystemDataSource implements LogDataSource {
         const contentStringList = fs.readFileSync(path,'utf8').split("\n");
         // const contentEntities = contentStringList.map( contentString => LogEntity.fromJson(contentString));
         //una forma corta, funciona cuando el argumento se usa para llamar otra funcion:
-        const contentEntities = contentStringList.map( LogEntity.fromJson);
+        //const contentEntities = contentStringList.map( LogEntity.fromJson);
+        const contentEntities = contentStringList.filter(stringvalue => stringvalue ).map( LogEntity.fromJson);
         return contentEntities;
     }
 

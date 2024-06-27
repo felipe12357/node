@@ -13,4 +13,8 @@
 /4.multiplication/coverage
 /5.noc/node_modules
 /5.noc/logs
+/5.noc/.env
+/5.noc/mongo
+/5.noc/dist
 /6.jsonServer/node_modules
+

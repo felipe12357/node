@@ -45,4 +45,10 @@ export class LogEntity {
         log.createAt = new Date(createAt);
         return log;
     }
+
+    static fromObject =(objectReceived:{[key:string]:any}):LogEntity =>{
+        const {message, level,origin, createAt} = objectReceived;
+        const log = new LogEntity( {message, level,origin, createAt});
+        return log;
+    }
 }

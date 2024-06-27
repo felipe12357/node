@@ -15,10 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmailService = void 0;
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const envs_plugin_1 = require("../../config/envs.plugin");
-const log_entitiy_1 = require("../../domain/entities/log.entitiy");
 class EmailService {
-    constructor(logRepository) {
-        this.logRepository = logRepository;
+    constructor() {
         this.transporter = nodemailer_1.default.createTransport({
             service: "gmail",
             auth: {
@@ -30,25 +28,9 @@ class EmailService {
     sendEmail(options) {
         return __awaiter(this, void 0, void 0, function* () {
             const { to, subject, htmlBody, attachments = [] } = options;
-            const logProperties = {
-                message: `Email sent Success`,
-                level: log_entitiy_1.LogSecurityLevelEnum.low,
-                origin: 'email.service'
-            };
-            try {
-                const sentInformation = yield this.transporter.sendMail({
-                    to, subject, html: htmlBody, attachments
-                });
-                this.logRepository.saveLog(new log_entitiy_1.LogEntity(logProperties));
-                return true;
-            }
-            catch (error) {
-                logProperties.level = log_entitiy_1.LogSecurityLevelEnum.hight;
-                logProperties.message = "error sending the message";
-                this.logRepository.saveLog(new log_entitiy_1.LogEntity(logProperties));
-                //    console.error(error);
-                return false;
-            }
+            return yield this.transporter.sendMail({
+                to, subject, html: htmlBody, attachments
+            });
         });
     }
 }

@@ -25,7 +25,15 @@ class FileSystemDataSource {
             const contentStringList = fs_1.default.readFileSync(path, 'utf8').split("\n");
             // const contentEntities = contentStringList.map( contentString => LogEntity.fromJson(contentString));
             //una forma corta, funciona cuando el argumento se usa para llamar otra funcion:
-            const contentEntities = contentStringList.map(log_entitiy_1.LogEntity.fromJson);
+            //const contentEntities = contentStringList.map( LogEntity.fromJson);
+            const contentEntities = contentStringList.map((stringContent) => {
+                return (stringContent !== "") && log_entitiy_1.LogEntity.fromJson(stringContent);
+            }).filter(stringvalue => stringvalue);
+            const test = contentEntities.filter(value => {
+                console.log(value);
+                return value;
+            });
+            console.log(test);
             return contentEntities;
         };
         this.createLogsFiles();
