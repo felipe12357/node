@@ -12,6 +12,11 @@ export const envs = {
     MONGO_USER: envvalidator.get('MONGO_USER').required().asString(),
     MONGO_PASS: envvalidator.get('MONGO_PASS').required().asString(),
     MONGO_DB_NAME: envvalidator.get('MONGO_DB_NAME').required().asString(),
+
+    //postgress
+    POSTGRES_PASS: envvalidator.get('POSTGRES_PASS').required().asString(),
+    POSTGRES_USER: envvalidator.get('POSTGRES_USER').required().asString(),
+    POSTGRES_DB: envvalidator.get('POSTGRES_USER').required().asString()
 }
 
 //para acceder a estas variables simplemente:

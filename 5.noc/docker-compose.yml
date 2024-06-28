@@ -10,3 +10,14 @@ services:
       - ./mongo:/data/db #donde va a guardar la data
     ports:
       - 27017:27017 #el primero es el puerto del pc se puede cambiar el 2nd es el de docker, no se puede cambiar
+  postgres-db:
+    image: postgres:15.7
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASS}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    ports:
+       - 5432:5432

@@ -1,6 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+
 /2.bases/node_modules
 /2.bases/combined.log
 *.log
@@ -16,5 +17,6 @@
 /5.noc/.env
 /5.noc/mongo
 /5.noc/dist
+/5.noc/postgres
 /6.jsonServer/node_modules
 

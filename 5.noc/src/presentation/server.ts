@@ -1,3 +1,4 @@
+import { PrismaClient, SeverityLevel } from "@prisma/client";
 import { LogSecurityLevelEnum } from "../domain/entities/log.entitiy";
 import { CheckUseCase } from "../domain/use-cases/checks/check-use-case";
 import { MailUseCase } from "../domain/use-cases/mails/mail-use-case";
@@ -6,15 +7,20 @@ import { MongoDataSource } from "../infrastructure/dataSources/mongo.datasource"
 import { LogRepositoryImpl } from "../infrastructure/repositories/log.repository.impl";
 import { CronService } from "./cron/cron-service";
 import { EmailService } from "./email/email.service";
+import { PostgrestDataSource } from "../infrastructure/dataSources/postgrest.datasource";
 
 
 export class Server {
     //Aca podemos alternar entre los diferentes data sources
-    logDataSource = new FileSystemDataSource();
-    logRepository = new LogRepositoryImpl(this.logDataSource);
-
+    fileSystemDataSource = new FileSystemDataSource();
     mongoDataSource = new MongoDataSource();
-  //  logRepository = new LogRepositoryImpl(this.mongoDataSource);
+    postgrestDataSource = new PostgrestDataSource();
+    logRepository = new LogRepositoryImpl(
+        //SE elige cualquiera de los 3 data sources
+        // this.mongoDataSource
+       // this.fileSystemDataSource
+       this.postgrestDataSource
+    );
 
 
     cronService: CronService = new CronService;
@@ -79,7 +85,7 @@ export class Server {
 
     static async getLogs(){
         const ServerInstance = Server.getInstance();
-        const logs = await ServerInstance.logRepository.getLogs(LogSecurityLevelEnum.hight);
+        const logs = await ServerInstance.logRepository.getLogs(LogSecurityLevelEnum.low);
         console.log(logs);
         console.log("fin");
     }

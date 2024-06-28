@@ -47,7 +47,8 @@ export class LogEntity {
     }
 
     static fromObject =(objectReceived:{[key:string]:any}):LogEntity =>{
-        const {message, level,origin, createAt} = objectReceived;
+        let {message, level,origin, createAt} = objectReceived;
+        level = level.toLowerCase();
         const log = new LogEntity( {message, level,origin, createAt});
         return log;
     }

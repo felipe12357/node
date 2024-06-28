@@ -37,15 +37,16 @@
         Nvm use 14… hace q use la version 14
         Nvm ls = lista las version instaladas de node
 
-## Typescript con node (explication): (https://gist.github.com/Klerith/47af527da090043f604b972b22dd4c01)
+## Typescript con node (explication): 
+    (https://gist.github.com/Klerith/47af527da090043f604b972b22dd4c01)
     Instalar TypeScript y tipos de Node, como dependencia de desarrollo
-    npm i -D typescript
+     npm i -D typescript
 
     npm install --save-dev nodemon
         nodemon src/app.js => comando para lanzar la aplicacion utilizando nodemon (con tsnode no es necesario)
 
    Inicializar el archivo de configuración de TypeScript 
-   npx tsc --init --outDir dist/ --rootDir src 
+        ```npx tsc --init --outDir dist/ --rootDir src      ```
 
    toca tener 2 archivos ejecutandose, haciendo click en el package.json script:
     * npx tsc --watch => detecta los cambios hechos en typescript y los compila a typescript //este toca lanzarlos desde el archivo package.json
@@ -162,6 +163,10 @@
    https://myaccount.google.com/apppasswords
 
 ## DOcker
+
+    https://hub.docker.com/_/postgres, reporsitorio de postgres
+    https://hub.docker.com/_/mongo, repositorio de mongo
+
     Debemos instalar docker desktop => este automaticamente instalaca compose
                      mongoDbCompass => se usa para gestionar las BD
 
@@ -171,5 +176,27 @@
 
     luego de tener configurado el archivo: docker-compose.yml ejecutamos:
 
-    docker compose up
+    docker compose up -d
     luego de ejecutarlo por primera vez se puede correr el contenedor desde docker Desktop
+
+## Programas recomendados
+    MongoDB compas => para el manejo de MONGo
+    TablePlus      => para el manejo de postgres
+
+## Prisma ORM
+    https://pris.ly/d/getting-started
+    https://www.prisma.io/docs/getting-started/quickstart
+
+    Para usarlo ademas de instalar el paquete con:
+    ``` npm install prisma --save-dev ```
+
+    es necesario utilizar el comando:
+    ``` npx prisma init --datasource-provider PostgreSQL ```
+
+    Ademas de PostgreSQL tambien tiene otras opciones como:
+    Mysql, SQlite, SqlServer y MongoDB
+
+    El comando crea automaticamente el archivo schema en la carpeta prisma
+
+    Una vez creado el schema se ejecuta el comando:
+        npx prisma migrate dev --name init
