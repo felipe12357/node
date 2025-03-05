@@ -1,3 +1,15 @@
+## Caracteristicas de node:
+    Componentes principales:
+    Dependencias Externas, Caracteristicas de C++ y librerias de JS que conectan nuestro codigo con C++
+
+    Orden de Ejecucion
+        libuv es el encargado de manejar el event loop
+
+        callback en microtask van primero
+        callback en timer
+        callback promises
+        callbacks Inputs y ouputs de archivos
+
 ## Comandos
     node => inicia la terminal interactiva de node (similar a la del navegador web)
     node nombreArchivo => ejecuta un archivo javascript
@@ -40,7 +52,8 @@
 ## Typescript con node (explication): 
     (https://gist.github.com/Klerith/47af527da090043f604b972b22dd4c01)
     Instalar TypeScript y tipos de Node, como dependencia de desarrollo
-     npm i -D typescript
+     npm i -D typescript  @types/node
+     
 
     npm install --save-dev nodemon
         nodemon src/app.js => comando para lanzar la aplicacion utilizando nodemon (con tsnode no es necesario)
@@ -127,7 +140,7 @@
     nota: para correr scripts en la consola q sean de ts-node se antepone npx:
     npx ts-node src/app
 
-## iniciacion de proyecto sin nodemon y con ts-node-dev
+## iniciacion de proyecto sin nodemon y con ts-node-dev (Preferida)
 
     0.Iniciar el archivo package.json
         npm init 
@@ -139,7 +152,7 @@
         npx tsc --init --outDir dist/ --rootDir src
 
     4. Crear scripts para dev, build y start en el package.json:
-        "dev": "tsnd --respawn src/app.ts",
+        "dev": "tsnd --respawn --clear src/app.ts",
         "build": "rimraf ./dist && tsc",
         "start": "npm run build && node dist/app.js"
 
@@ -163,6 +176,7 @@
    https://myaccount.google.com/apppasswords
 
 ## DOcker
+    Al correr el comando docker compose up-d automaticamente descargar las imagenes
 
     https://hub.docker.com/_/postgres, reporsitorio de postgres
     https://hub.docker.com/_/mongo, repositorio de mongo
@@ -170,13 +184,9 @@
     Debemos instalar docker desktop => este automaticamente instalaca compose
                      mongoDbCompass => se usa para gestionar las BD
 
-    adicionalmente ejecutamos los comandos:
-    docker pull mongo:6.0.6
-    docker pull postgres:15.3
-
     luego de tener configurado el archivo: docker-compose.yml ejecutamos:
 
-    docker compose up -d
+    docker compose up -d  // -d es para q corra el comando de forma dtach,no enlazado con la terminar
     luego de ejecutarlo por primera vez se puede correr el contenedor desde docker Desktop
 
 ## Programas recomendados

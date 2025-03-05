@@ -14,9 +14,16 @@
 /4.multiplication/coverage
 /5.noc/node_modules
 /5.noc/logs
-/5.noc/.env
 /5.noc/mongo
 /5.noc/dist
 /5.noc/postgres
 /6.jsonServer/node_modules
+/7.noc-bd/node_modules
+/7.noc-bd/logs
+/7.noc-bd/mongo
+/7.noc-bd/dist
+/7.noc-bd/postgres
+/7.noc-bd
+/8.restExpress/node_modules
+/8.restExpress/dist
 
