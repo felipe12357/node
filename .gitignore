@@ -26,4 +26,6 @@
 /7.noc-bd
 /8.restExpress/node_modules
 /8.restExpress/dist
+/8.restExpress/postgres
+/8.restExpress/mongo
 
