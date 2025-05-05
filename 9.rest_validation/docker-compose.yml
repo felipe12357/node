@@ -1,0 +1,12 @@
+version: '3.1' #es la version de docker compouse
+services:
+  mongo-db:
+    image: mongo:6.0.6 #version de dockermongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASS}
+    volumes:
+      - ./mongo:/data/db #donde va a guardar la data
+    ports:
+      - 27017:27017 #el primero es el puerto del pc se puede cambiar el 2nd es el de docker, no se puede cambiar

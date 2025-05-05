@@ -1,0 +1,32 @@
+{
+  "name": "9.rest_validation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsnd --respawn --clear src/app.ts",
+    "build": "rimraf ./dist && tsc",
+    "start": "npm run build && node dist/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.13.14",
+    "rimraf": "^6.0.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "-": "^0.0.1",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "env-var": "^7.5.0",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "mongoose": "^8.13.1",
+    "s": "^1.0.0"
+  }
+}
