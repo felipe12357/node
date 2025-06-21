@@ -3,11 +3,7 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { body, query, validationResult } from 'express-validator';
 
-
-
-
 export class AuthRoutes {
-
 
   static get routes(): Router {
 
@@ -28,8 +24,6 @@ export class AuthRoutes {
        body('email').isEmail(),
        body('password').isAlphanumeric(),
        authController.register );
-    
-    router.get('/validate-email/:token', authController.validate );
 
     return router;
   }

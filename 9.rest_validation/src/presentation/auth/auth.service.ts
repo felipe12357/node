@@ -1,4 +1,5 @@
-import { BcryptAdapter } from "../../config/bcrypt.adapter";
+
+import { BcryptAdapter, JwtAdapter } from "../../config";
 import { UserModel } from "../../data";
 import { CustomError } from "../../domain";
 import { LoginDtoType } from "../../domain/dtos/auth/login.dto";
@@ -23,7 +24,9 @@ export class AuthService {
         await newUser.save();
 
         const { password, ...userToSend } = UserEntity.fromObject(newUser);
-        return userToSend;
+        const token = await JwtAdapter.genereteToken({id: userToSend.id, email: userToSend.email});
+        
+        return { user: userToSend, token};
     }
 
     public async loginUser(loginDtoType: LoginDtoType){
@@ -32,7 +35,9 @@ export class AuthService {
         if(existUser) {
            if( BcryptAdapter.compare(loginDtoType.password, existUser.password) ) {
                const { password, ...userToSend } = UserEntity.fromObject(existUser);
-              return userToSend;
+               const token = await JwtAdapter.genereteToken({id: userToSend.id, email: userToSend.email});
+
+              return { user: userToSend, token};
            } else
             throw CustomError.badRequest('bad credentials');
         }
