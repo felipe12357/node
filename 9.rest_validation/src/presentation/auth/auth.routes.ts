@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { body, query, validationResult } from 'express-validator';
+import { Validators } from '../../config/validators';
 
 export class AuthRoutes {
 
@@ -21,7 +22,8 @@ export class AuthRoutes {
     //Body hace la validacion sobre el formato body/json 
     router.post('/register',
        body(['name','email','password']).notEmpty(),
-       body('email').isEmail(),
+       body('email').isEmail()
+        .custom(async(value:string)=> await Validators.uniqueEmail(value)).withMessage('Email already exists'),
        body('password').isAlphanumeric(),
        authController.register );
 
