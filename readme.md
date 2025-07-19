@@ -210,3 +210,22 @@
 
     Una vez creado el schema se ejecuta el comando:
         npx prisma migrate dev --name init
+
+## NGROK
+  para la aplicacion webhook utilizo ngrok para exponer un puerto localmente
+
+  https://dashboard.ngrok.com/get-started/setup/windows
+
+  En windows es necesario agregar un path en las variables de
+  entorno de la cuenta, (el path va a ser la ubicacion del archivo)
+
+  para probar q quedo correctamente en la terminar se ejecuta el comando: ngrok -v
+
+  comando de ejecucion:
+   ngrok http http://localhost:#puerto
+
+  este comando solo funciona en la powershell de windows, no en la integrada de Visualstudio code
+
+  Otra alternativa y mucho mas facil de utilizar son los PORTS de VisualStudio Code
+  
+
