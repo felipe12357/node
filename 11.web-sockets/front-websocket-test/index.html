@@ -1,0 +1,26 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>web sockets</h1>
+        <input id="input_message" type="text">
+        <button onclick="sendmessage()">Enviar</button>
+        <ul id="messages"></ul>
+
+        <script>
+            const ws = new WebSocket('ws://localhost:3000');
+            const input = document.getElementById("input_message");
+
+            const sendmessage = ()=> {
+                ws.send( `${input.value}`);
+            } 
+
+            const listenSocket = ()=>{
+                ws.onmessage = (val)=> console.log(val.data);
+            }
+
+            listenSocket();
+        </script>
+    </body>
+</html>

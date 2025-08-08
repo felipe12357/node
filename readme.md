@@ -143,7 +143,7 @@
 ## iniciacion de proyecto sin nodemon y con ts-node-dev (Preferida)
 
     0.Iniciar el archivo package.json
-        npm init 
+        npm init -y (-y => configuracion por defecto)
 
     1. Instalar TypeScript y demás dependencias
         npm i -D typescript @types/node ts-node-dev rimraf
